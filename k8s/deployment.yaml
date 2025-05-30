@@ -1,0 +1,22 @@
+# k8s/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-app-deployment # Use a more descriptive name
+  labels:
+    app: node-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: node-app
+  template:
+    metadata:
+      labels:
+        app: node-app
+    spec:
+      containers:
+      - name: node-app-container # Use a more descriptive container name
+        image: 063212612232.dkr.ecr.us-east-1.amazonaws.com/https://us-east-1.console.aws.amazon.com/ecr/repositories/private/063212612232/fuhchu-ecr-repo?region=us-east-1/docker-ecr-img:latest # <--- UPDATE THIS LINE
+        ports:
+        - containerPort: 3000

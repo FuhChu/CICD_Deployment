@@ -1,0 +1,13 @@
+# k8s/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: node-app-service
+spec:
+  selector:
+    app: node-app # This must match the 'app' label in your deployment's template metadata
+  ports:
+    - protocol: TCP
+      port: 80       # Port the service listens on
+      targetPort: 3000 # Port your application listens on inside the container (EXPOSE 3000 in Dockerfile)
+  type: LoadBalancer # This will create an AWS Load Balancer
